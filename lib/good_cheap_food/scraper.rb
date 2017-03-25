@@ -24,8 +24,12 @@ class Scraper
     region = doc.css(".region").text
     zip = doc.css(".postal-code").text
     address = street_addr + ", " + locality + ", " + region + " " + zip
-
     attributes[:address] = address
+
+    phone = doc.css(".summary-address p").text
+    attributes[:phone] = phone
+
+    
 
   end
 end
