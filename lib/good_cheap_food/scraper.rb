@@ -19,17 +19,13 @@ class Scraper
 
     attributes = {}
 
-    street_addr = doc.css(".street-address")
-    street_addr.each{|element| attributes[:address] = element.text}
+    street_addr = doc.css(".street-address").text
+    locality = doc.css(".locality").text
+    region = doc.css(".region").text
+    zip = doc.css(".postal-code").text
+    address = street_addr + ", " + locality + ", " + region + " " + zip
 
-    locality = doc.css(".locality")
-    locality.each{|element| attributes[:address] += ", #{element.text}"}
-
-    region = doc.css(".region")
-    region.each{|element| attributes[:address] += ", #{element.text}"}
-
-    zip_codes = doc.css(".postal-code")
-    zip_codes.each{|element| attributes[:address] += " #{element.text}"}
+    attributes[:address] = address
 
   end
 end
