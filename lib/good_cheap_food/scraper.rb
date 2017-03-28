@@ -33,13 +33,10 @@ class Scraper
     address = street_addr + ", " + locality + ", " + region + " " + zip
     attributes[:address] = address
 
-    phone = doc.css(".summary-address p").text
-    attributes[:phone] = phone
-
-    food_recs = doc.css("b p").text.split("; ")
-    food_recs.map! {|food| food.split(', ')}
+    food_recs = doc.css('b+p').text.strip.split('; ')
+    food_recs_arr = food_recs.map {|food| food.split(', ')}
     attributes[:recommended_food] = food_recs
-
+    
     attributes
   end
 end

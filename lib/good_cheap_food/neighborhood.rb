@@ -1,5 +1,5 @@
 class Neighborhood
-  attr_accessor :name, :restaurants, :neighborhoods
+  attr_accessor :name, :restaurants
 
   @@all = []
 
