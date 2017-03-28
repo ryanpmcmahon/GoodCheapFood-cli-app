@@ -10,6 +10,13 @@ class Scraper
       rest_arr << {name: element.text, profile_url: element["href"]}
     end
 
+    neighborhood_elements = doc.css("tr td:last-child p")
+    i = 0
+    neighborhood_elements.each do |element|
+      rest_arr[i][:neighborhood] = element.text
+      i += 1
+    end
+
     rest_arr
   end
 
@@ -29,7 +36,10 @@ class Scraper
     phone = doc.css(".summary-address p").text
     attributes[:phone] = phone
 
-    
+    food_recs = doc.css("b p").text.split("; ")
+    food_recs.map! {|food| food.split(', ')}
+    attributes[:recommended_food] = food_recs
 
+    attributes
   end
 end
