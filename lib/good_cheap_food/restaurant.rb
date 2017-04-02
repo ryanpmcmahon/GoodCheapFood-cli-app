@@ -1,5 +1,5 @@
 class Restaurant
-  attr_accessor :name, :neighborhood, :cuisine, :address, :profile, :recommended_dishes, :profile_url
+  attr_accessor :name, :profile_url, :recommended_dishes, :neighborhood, :cuisine, :address
 
   @@all = []
 
