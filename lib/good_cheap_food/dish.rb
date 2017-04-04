@@ -1,10 +1,11 @@
 class Dish
   attr_accessor :name, :price, :cuisine, :restaurants
 
-  def initialize(name, price)
-    @name = name
-    price = price
+  @@all = []
+
+  def initialize
     @restaurants = []
+    self.class.all << self
   end
 
   def cuisine(cuisine)
@@ -12,5 +13,8 @@ class Dish
   end
   #cuisine through restaurants?
 
+  def self.all
+    @@all
+  end
 
 end
