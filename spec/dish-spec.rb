@@ -1,15 +1,17 @@
 require_relative '../config/environment'
 
 describe Dish do
-  it "keeps record of all dishes" do
-    dish = Dish.new
-    dishes = Dish.all
-    expect(dishes.length).to be > 0
-  end
-
   it 'initializes with an array of restaurants that serve the dish' do
     d = Dish.new
-    expect(d.restaurants.class).to eq 'Array'
+    expect(d.restaurants.class).to eq Array
+  end
+
+  describe '#self.create' do
+    it "creates new instance using a name and saves to @@all" do
+      dish = Dish.create('taco')
+      expect(Dish.all).to include dish
+    end
+
   end
 
   describe "#find_by_name" do
