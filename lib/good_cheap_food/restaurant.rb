@@ -3,10 +3,8 @@ class Restaurant
 
   @@all = []
 
-  def initialize(name)
-    @name = name
+  def initialize
     @recommended_dishes = []
-    self.class.all << self
   end
 
   def self.new_from_scraper
@@ -24,11 +22,11 @@ class Restaurant
   def self.all
     @@all
   end
-  # 
-  # def recommended_dishes=(menu_arr)
-  #   @recommended_dishes = []
-  #   menu_arr.each do |dish_arr|
-  #     new_dish = Dish.new(dish_arr[0]) unless Dish.all.map{|d| d.name}.include?(dish_arr[0])
-  #     # need a create or find by name for dishes
-  # end
+
+  def recommended_dishes=(menu_arr)
+    @recommended_dishes = []
+    menu_arr.each do |dish_arr|
+      new_dish = Dish.new(dish_arr[0]) unless Dish.all.map{|d| d.name}.include?(dish_arr[0])
+      # need a create or find by name for dishes
+  end
 end

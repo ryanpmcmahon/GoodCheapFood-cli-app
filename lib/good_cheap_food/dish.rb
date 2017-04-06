@@ -11,12 +11,19 @@ class Dish
     @@all
   end
 
+  def self.reset_all
+    all.clear
+  end
+
   def save
     self.class.all << self
   end
 
   def self.create(name)
-    item = new.tap{|x| x.name = name x.save}
+    new.tap do |x|
+      x.name = name
+      x.save
+    end
   end
 
   def self.find_by_name(name)
