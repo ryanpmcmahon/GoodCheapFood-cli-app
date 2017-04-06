@@ -1,8 +1,8 @@
 class Dish
-  include Createable
-  include Findable
-  include Savable::ClassMethods
-  extend Savable::InstanceMethods
+  extend Findable
+  extend Creatable
+  extend Savable::ClassMethods
+  include Savable::InstanceMethods
 
   attr_accessor :name, :price, :cuisine, :restaurants
 

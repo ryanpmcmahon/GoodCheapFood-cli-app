@@ -1,6 +1,5 @@
 module Creatable
-  include Findable
-
+  extend Findable
   def create(name)
     new.tap do |x|
       x.name = name
