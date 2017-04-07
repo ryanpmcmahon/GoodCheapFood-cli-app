@@ -49,8 +49,8 @@ class Restaurant
   end
 
   def cuisine=(cuisine)
-    rest_cuisine = find_or_create_by_name(cuisine)
+    rest_cuisine = Cuisine.find_or_create_by_name(cuisine)
     @cuisine = rest_cuisine
-
+    rest_cuisine.restaurants << self unless rest_cuisine.restaurants.include?(self)
   end
 end
