@@ -58,4 +58,11 @@ describe Dish do
       expect(Dish.all.select{|x| x.name == 'tacos'}.length).to eq 1
     end
   end
+
+  it 'has prices from restaurants' do
+    d = Dish.create('tacos')
+    r = Restaurant.create('TacoBell')
+    r.add_menu_item('tacos','$0.99')
+    expect(d.price_list[r.name]).to eq '$0.99'
+  end
 end

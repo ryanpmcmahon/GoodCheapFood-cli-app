@@ -12,9 +12,12 @@ class Dish
     @restaurants = []
   end
 
-  def cuisine=(cuisine)
-    @cuisine = cuisine
+  def price_list
+    price_list = {}
+    restaurants.each do |r|
+      price = r.recommended_dishes.select{|dish_arr| dish_arr.include?(self)}.flatten[1]
+      price_list[r.name] = price
+    end
+    price_list
   end
-  #cuisine through restaurants?
-
 end
