@@ -38,4 +38,48 @@ describe Restaurant do
       expect(r.recommended_dishes.flatten!).to include d
     end
   end
+
+  describe '#cuisine=' do
+    it 'sets a Cuisine class instance as a cuisine to restaurant' do
+      r = Restaurant.new
+      r.cuisine = 'italian'
+      expect(r.cuisine.class).to be Cuisine
+    end
+
+    it 'does not create a cuisine instance if it exists' do
+      r = Restaurant.new
+      c = Cuisine.create("Asian")
+      r.cuisine = "Asian"
+      expect(r.cuisine).to eq c
+    end
+
+    it 'adds restaurant to cuisine restaurant array' do
+      r = Restaurant.new
+      c = Cuisine.create("mexican")
+      r.cuisine = "mexican"
+      expect(c.restaurants).to include r
+    end
+  end
+
+  describe '#neighborhood=' do
+    it 'sets a Neighborhood class instance as a neighborhood to restaurant' do
+      r = Restaurant.new
+      r.neighborhood = 'UWS'
+      expect(r.neighborhood.class).to be Neighborhood
+    end
+
+    it 'does not create a neighborhood instance if it exists' do
+      r = Restaurant.new
+      n = Neighborhood.create("UES")
+      r.neighborhood = "UES"
+      expect(r.neighborhood).to eq n
+    end
+
+    it 'adds restaurant to neighborhood restaurant array' do
+      r = Restaurant.new
+      n = Neighborhood.create("downtown")
+      r.neighborhood = "downtown"
+      expect(n.restaurants).to include r
+    end
+  end
 end

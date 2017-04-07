@@ -6,6 +6,8 @@ class Cuisine
 
   attr_accessor :name, :restaurants
 
+  @@all = []
+
   def initialize
     @restaurants = []
   end

@@ -10,7 +10,6 @@ class Neighborhood
 
   def initialize
     @restaurants = []
-    @cuisines = []
   end
 
 end

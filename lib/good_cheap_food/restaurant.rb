@@ -4,8 +4,8 @@ class Restaurant
   extend Savable::ClassMethods
   include Savable::InstanceMethods
 
-  attr_accessor :name, :profile_url, :neighborhood, :cuisine, :address
-  attr_reader :recommended_dishes
+  attr_accessor :name, :profile_url, :address
+  attr_reader :recommended_dishes, :cuisine, :neighborhood
 
   @@all = []
 
@@ -52,5 +52,11 @@ class Restaurant
     rest_cuisine = Cuisine.find_or_create_by_name(cuisine)
     @cuisine = rest_cuisine
     rest_cuisine.restaurants << self unless rest_cuisine.restaurants.include?(self)
+  end
+
+  def neighborhood=(neighborhood)
+    rest_neighborhood = Neighborhood.find_or_create_by_name(neighborhood)
+    @neighborhood = rest_neighborhood
+    rest_neighborhood.restaurants << self unless rest_neighborhood.restaurants.include?(self)
   end
 end
