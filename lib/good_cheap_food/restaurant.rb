@@ -23,12 +23,34 @@ class Restaurant
         new_rest.send("#{attribute}=", v)
       end
     end
+    all
   end
 
   def recommended_dishes=(menu_arr)
     menu_arr.each do |dish_arr|
       new_dish = Dish.find_or_create_by_name(dish_arr[0])
-      recommended_dishes << [new_dish, dish_arr[1]]
+      new_dish.restaurants << self unless new_dish.restaurants.include?(self)
+      new_dish_and_price = [new_dish, dish_arr[1]]
+      recommended_dishes << new_dish_and_price unless recommended_dishes.include?(new_dish_and_price)
     end
+  end
+
+  def add_menu_item(dish_name, price)
+    new_dish = Dish.find_or_create_by_name(dish_name)
+    new_dish.restaurants << self unless new_dish.restaurants.include?(self)
+    new_dish_and_price = [new_dish, price]
+    recommended_dishes << new_dish_and_price unless recommended_dishes.include?(new_dish_and_price)
+  end
+
+  def update_dish_price(dish, price)
+    recommended_dishes.each do |dish_arr|
+      dish_arr[1] = price if dish_arr[0] == dish
+    end
+  end
+
+  def cuisine=(cuisine)
+    rest_cuisine = find_or_create_by_name(cuisine)
+    @cuisine = rest_cuisine
+
   end
 end

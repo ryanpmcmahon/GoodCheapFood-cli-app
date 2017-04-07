@@ -4,19 +4,13 @@ class Neighborhood
   extend Savable::ClassMethods
   include Savable::InstanceMethods
 
-  attr_accessor :name, :restaurants
+  attr_accessor :name, :restaurants, :cuisines
 
   @@all = []
 
-  def initialize(name)
-    name = name
-    restaurants = []
-    all << self
+  def initialize
+    @restaurants = []
+    @cuisines = []
   end
-
-  def self.all
-    @@all
-  end
-
 
 end

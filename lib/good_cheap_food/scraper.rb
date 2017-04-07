@@ -35,7 +35,7 @@ class Scraper
 
     food_recs = doc.css('b+p').text.strip.split('; ')
     food_recs_arr = food_recs.map {|food| food.split(', ')}
-    attributes[:recommended_dishes] = food_recs
+    attributes[:recommended_dishes] = food_recs_arr
 
     attributes
   end
