@@ -15,7 +15,7 @@ class Dish
   def price_list
     price_list = {}
     restaurants.each do |r|
-      price = r.recommended_dishes.select{|dish_arr| dish_arr.include?(self)}.flatten[1]
+      price = r.recommended_dishes.detect{|dish_arr| dish_arr.include?(self)}[1]
       price_list[r.name] = price
     end
     price_list
