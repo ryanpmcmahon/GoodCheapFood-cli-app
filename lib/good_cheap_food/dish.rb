@@ -4,7 +4,8 @@ class Dish
   extend Savable::ClassMethods
   include Savable::InstanceMethods
 
-  attr_accessor :name, :price, :cuisine, :restaurants
+  attr_accessor :name
+  attr_reader :restaurants
 
   @@all = []
 
@@ -20,4 +21,7 @@ class Dish
     end
     price_list
   end
+
+  #cuisine through restaurant
+
 end
