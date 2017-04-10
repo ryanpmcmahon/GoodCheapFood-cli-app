@@ -4,7 +4,7 @@ class Restaurant
   extend Savable::ClassMethods
   include Savable::InstanceMethods
 
-  attr_accessor :name, :profile_url, :address
+  attr_accessor :name, :profile_url, :address, :phone
   attr_reader :recommended_dishes, :cuisine, :neighborhood
 
   @@all = []
