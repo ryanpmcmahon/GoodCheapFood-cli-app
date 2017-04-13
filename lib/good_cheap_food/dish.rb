@@ -22,6 +22,8 @@ class Dish
     price_list
   end
 
-  #cuisine through restaurant
+  def cuisines
+    restaurants.map{|e| e.cuisine}
+  end
 
 end
