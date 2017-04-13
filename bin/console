@@ -5,7 +5,7 @@ require 'irb'
 require_relative "../config/environment.rb"
 
 def reload!
-  
+  load './config/environment.rb'
 end
 
 puts "Welcome to Good Cheap Food sandbox!"
