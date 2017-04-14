@@ -59,4 +59,5 @@ class Restaurant
     @neighborhood = rest_neighborhood
     rest_neighborhood.restaurants << self unless rest_neighborhood.restaurants.include?(self)
   end
+
 end

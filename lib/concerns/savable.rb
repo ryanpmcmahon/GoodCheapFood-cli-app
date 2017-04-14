@@ -7,6 +7,10 @@ module Savable
     def reset_all
       all.clear
     end
+
+    def all_names
+      all.map{|e| e.name}
+    end
   end
 
   module InstanceMethods
