@@ -6,7 +6,19 @@ class CLI
     puts "1. Search for food or restaurants by neighborhood, cuisine, or name."
     puts "2. Or, see a list by typing 'List [neighborhoods, cuisines, dishes, restaurants]'"
 
-    action = gets.strip.downcase.split!(" ")
+    action = gets.strip.downcase.split(" ")
+
+    task = action[0]
+
+    if task == 'search'
+      Search.new(action[1]).detect_search_term.display
+
+    elsif task == 'list'
+
+
+    else
+      puts "Error: make sure to type 'Search' or 'List' first"
+    end
 
   end
 

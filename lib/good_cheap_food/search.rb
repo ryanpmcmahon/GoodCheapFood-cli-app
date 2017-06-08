@@ -5,7 +5,7 @@ class Search
     @search_term = search_term
   end
 
-  def detect
+  def detect_search_term
     if Restaurant.find_by_name(search_term) != nil
       @result = Restaurant.find_by_name(search_term)
     elsif Cuisine.find_by_name(search_term) != nil
