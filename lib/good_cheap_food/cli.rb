@@ -7,20 +7,33 @@ class CLI
 
   def call
     puts "Welcome to Good, Cheap Food! Here's how to start:"
-    puts "1. Search for food or restaurants by neighborhood, cuisine, or name."
-    puts "2. Or, see a list by typing 'List [neighborhoods, cuisines, dishes, restaurants]'"
+    puts "How would you like to start?"
+    puts "Enter '1' to start a specific search"
+    puts "Enter '2' to see a list of restaurants, neighborhoods, or cuisines"
 
-    action = gets.strip.downcase.split(" ")
-
-    task = action[0]
-
-    if task == 'search'
-      Search.new(action[1]).detect_search_term.display
-
-    elsif task == 'list'
-      
+    if gets.strip == '1'
+      puts "Enter the name of the restaurant, neighborhood, or cuisine you are searching for: "
+      search = Search.new(gets.strip)
+      search.detect_search_term
+      search.display
+      puts "What would you like to do next?"
+      puts "Enter '1' to start a specific search"
+      puts "Enter '2' to see a list of restaurants, neighborhoods, or cuisines"
+      puts "Enter '3' to exit"
     else
-      puts "Error: make sure to type 'Search' or 'List' first"
+      puts "Enter '1' to list restaurants by name and neighborhood"
+      puts "Enter '2' to list available neighborhoods"
+      puts "Enter '3' to list avialable cuisines"
+      cmd = gets.strips
+      list(cmd)
+      puts "Type name of item to see full profile:"
+      search = Search.new(gets.strip)
+      search.detect_search_term
+      search.display
+      puts "What would you like to do next?"
+      puts "Enter '1' to start a specific search"
+      puts "Enter '2' to see a list of restaurants, neighborhoods, or cuisines"
+      puts "Enter '3' to exit"
     end
 
   end
