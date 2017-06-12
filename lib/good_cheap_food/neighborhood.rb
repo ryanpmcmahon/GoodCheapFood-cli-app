@@ -17,4 +17,12 @@ class Neighborhood
     restaurants.map{|r| r.cuisine}
   end
 
+  def create_profile
+    @profile = {
+      name: name,
+      cuisine: cuisines.map { |e| e.name },
+      restaurants: restaurants.map { |e| e.name }
+    }
+  end
+
 end

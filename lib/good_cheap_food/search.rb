@@ -21,6 +21,7 @@ class Search
     if result == 'n/a'
       puts == result
     else
+      result.create_profile
       result.display_profile
     end
   end

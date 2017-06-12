@@ -5,7 +5,7 @@ class Dish
   include Savable::InstanceMethods
 
   attr_accessor :name
-  attr_reader :restaurants
+  attr_reader :restaurants, :profile
 
   @@all = []
 
@@ -24,6 +24,15 @@ class Dish
 
   def cuisines
     restaurants.map{|e| e.cuisine}
+  end
+
+
+  def create_profile
+    @profile = {
+      name: name,
+      cuisine: cuisines.map { |e| e.name },
+      restaurants: price_list
+    }
   end
 
 end
