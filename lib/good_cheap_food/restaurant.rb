@@ -3,9 +3,10 @@ class Restaurant
   extend Creatable
   extend Savable::ClassMethods
   include Savable::InstanceMethods
+  include Displayable
 
   attr_accessor :name, :profile_url, :address, :phone
-  attr_reader :recommended_dishes, :cuisine, :neighborhood
+  attr_reader :recommended_dishes, :cuisine, :neighborhood, :profile
 
   @@all = []
 
@@ -60,4 +61,12 @@ class Restaurant
     rest_neighborhood.restaurants << self unless rest_neighborhood.restaurants.include?(self)
   end
 
+  def create_profile
+    @profile = {name: name,
+                cuisine: cuisine.name,
+                address: address,
+                phone: phone,
+                food: recommended_dishes.map { |dish_arr| "#{dish_arr[0].name}: #{dish_arr[1]}" }
+    }
+  end
 end

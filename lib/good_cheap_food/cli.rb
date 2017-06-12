@@ -1,6 +1,10 @@
 
 class CLI
 
+  def initialize
+    Restaurant.new_from_scraper
+  end
+
   def call
     puts "Welcome to Good, Cheap Food! Here's how to start:"
     puts "1. Search for food or restaurants by neighborhood, cuisine, or name."
