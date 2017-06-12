@@ -14,8 +14,7 @@ class CLI
       Search.new(action[1]).detect_search_term.display
 
     elsif task == 'list'
-
-
+      
     else
       puts "Error: make sure to type 'Search' or 'List' first"
     end

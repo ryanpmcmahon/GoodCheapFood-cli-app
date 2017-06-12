@@ -10,12 +10,18 @@ class Search
       @result = Restaurant.find_by_name(search_term)
     elsif Cuisine.find_by_name(search_term) != nil
       @result = Cuisine.find_by_name(search_term)
-    else Neighborhood.find_by_name(search_term) != nil
+    elsif Neighborhood.find_by_name(search_term) != nil
       @result = Neighborhood.find_by_name(search_term)
+    else
+      @result = 'n/a'
     end
   end
 
   def display
-    result.display_profile
+    if result == 'n/a'
+      puts == result
+    else
+      result.display_profile
+    end
   end
 end
