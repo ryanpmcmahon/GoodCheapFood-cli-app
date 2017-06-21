@@ -23,7 +23,7 @@ class CLI
       puts "Enter '1' to list restaurants by name and neighborhood"
       puts "Enter '2' to list available neighborhoods"
       puts "Enter '3' to list avialable cuisines"
-      cmd = gets.strips
+      cmd = gets.strip
       list(cmd)
       puts "Type name of item to see full profile:"
       search = Search.new(gets.strip)
@@ -40,9 +40,9 @@ class CLI
     puts "Enter '1' to start a specific search"
     puts "Enter '2' to see a list of restaurants, neighborhoods, or cuisines"
     puts "Enter '3' to exit"
-    i = gets.strips
+    i = gets.strip
 
-    if i == 3
+    if i == '3'
       puts 'Goodbye'
     else
       call
