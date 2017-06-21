@@ -11,15 +11,14 @@ class CLI
     puts "Enter '1' to start a specific search"
     puts "Enter '2' to see a list of restaurants, neighborhoods, or cuisines"
 
-    if gets.strip == '1'
+    input = gets.strip
+
+    if input == '1'
       puts "Enter the name of the restaurant, neighborhood, or cuisine you are searching for: "
       search = Search.new(gets.strip)
       search.detect_search_term
       search.display
-      puts "What would you like to do next?"
-      puts "Enter '1' to start a specific search"
-      puts "Enter '2' to see a list of restaurants, neighborhoods, or cuisines"
-      puts "Enter '3' to exit"
+      next_steps
     else
       puts "Enter '1' to list restaurants by name and neighborhood"
       puts "Enter '2' to list available neighborhoods"
@@ -30,14 +29,25 @@ class CLI
       search = Search.new(gets.strip)
       search.detect_search_term
       search.display
-      puts "What would you like to do next?"
-      puts "Enter '1' to start a specific search"
-      puts "Enter '2' to see a list of restaurants, neighborhoods, or cuisines"
-      puts "Enter '3' to exit"
+
+      next_steps
     end
 
   end
 
+  def next_steps
+    puts "What would you like to do next?"
+    puts "Enter '1' to start a specific search"
+    puts "Enter '2' to see a list of restaurants, neighborhoods, or cuisines"
+    puts "Enter '3' to exit"
+    i = gets.strips
+
+    if i == 3
+      puts 'Goodbye'
+    else
+      call
+    end
+  end
 
 end
 
