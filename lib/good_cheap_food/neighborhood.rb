@@ -3,9 +3,10 @@ class Neighborhood
   extend Creatable
   extend Savable::ClassMethods
   include Savable::InstanceMethods
+  include Displayable
 
   attr_accessor :name
-  attr_reader :restaurants
+  attr_reader :restaurants, :profile
 
   @@all = []
 

@@ -1,50 +1,53 @@
 
 class CLI
-  attr_accessor :user_input
+  attr_accessor :start
 
   def initialize
     Restaurant.new_from_scraper
     puts "Welcome to Good, Cheap Food! Here's how to start:"
     puts "Enter '1' to start a specific search"
     puts "Enter '2' to see a list of restaurants, neighborhoods, or cuisines"
-    @user_input = gets.strip
+    @start = gets.strip
   end
 
-  def call
-    if user_input == '1'
+  def call(instruction)
+    if instruction == '1'
       puts "Enter the name of the restaurant, neighborhood, or cuisine you are searching for: "
-      user_input = gets.strip
-      run_search(user_input)
-      # next_steps
+      run_search
+      next_steps
 
-    elsif user_input == '2'
+    elsif instruction == '2'
       puts "Enter '1' to list restaurants by name and neighborhood"
       puts "Enter '2' to list available neighborhoods"
       puts "Enter '3' to list avialable cuisines"
-      # user_input = gets.strip
-      # print_list(user_input)
+      print_list
 
       puts "Type name of item to see full profile:"
-      # user_input = gets.strip
-      # run_search(user_input)
-      # next_steps
+      run_search
+      next_steps
 
     else
       puts "Sorry, command not recognized."
-      # next_steps
+      next_steps
     end
   end
 
-  def run_search(input)
-    search = Search.new(input)
+  def run_search
+    search = Search.new(gets.strip)
     search.detect_search_term
     search.display
   end
 
-  def print_list(input)
-    num = input.to_i
-    options = [Restaurant.all_names, Neighborhood.all_names, Cuisine.all_names]
-    options[num]
+  def print_list
+    i = gets.strip
+    case i
+    when "1"
+      Restaurant.print_names_and_neighborhood
+    when "2"
+      Neighborhood.all_names.each{|n| puts n }
+    when "3"
+      Cuisine.all_names.each{|n| puts n }
+    end
   end
 
   def next_steps
@@ -52,12 +55,12 @@ class CLI
     puts "Enter '1' to start a specific search"
     puts "Enter '2' to see a list of restaurants, neighborhoods, or cuisines"
     puts "Enter '3' to exit"
-    user_input = gets.strip
+    continue = gets.strip
 
-    if user_input == '3'
+    if continue == '3'
       puts 'Goodbye'
     else
-      call
+      call(continue)
     end
   end
 

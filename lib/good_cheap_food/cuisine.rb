@@ -3,6 +3,7 @@ class Cuisine
   extend Creatable
   extend Savable::ClassMethods
   include Savable::InstanceMethods
+  include Displayable
 
   attr_accessor :name, :restaurants
   attr_reader :profile

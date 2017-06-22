@@ -4,4 +4,4 @@ require_relative "../config/environment.rb"
 
 interface = CLI.new
 
-interface.call
+interface.call(interface.start)

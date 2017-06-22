@@ -36,7 +36,7 @@ class Scraper
     phone = doc.css(".summary-address > p").text.split(/\r\n/)[-9].strip
     attributes[:phone] = phone
 
-    cuisine = doc.css(".category > strong").text
+    cuisine = doc.css(".category").text[9..-1]
     attributes[:cuisine] = cuisine
 
     food_recs = doc.css("b+p").text.downcase.strip

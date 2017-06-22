@@ -19,6 +19,7 @@ class Restaurant
     restaurants.each do |restaurant|
       new_rest = Restaurant.find_or_create_by_name(restaurant[:name])
       new_rest.profile_url = restaurant[:profile_url]
+      new_rest.neighborhood = restaurant[:neighborhood]
       rest_attr = Scraper.scrape_restaurant_profile(new_rest.profile_url)
       rest_attr.each do |attribute,v|
         new_rest.send("#{attribute}=", v)
@@ -68,5 +69,11 @@ class Restaurant
                 phone: phone,
                 food: recommended_dishes.map { |dish_arr| "#{dish_arr[0].name}: #{dish_arr[1]}" }
     }
+  end
+
+  def self.print_names_and_neighborhood
+    all.each do |r|
+      puts "#{r.name}: #{r.cuisine.name} in #{r.neighborhood.name}"
+    end
   end
 end
