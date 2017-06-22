@@ -1,38 +1,50 @@
 
 class CLI
+  attr_accessor :user_input
 
   def initialize
     Restaurant.new_from_scraper
+    puts "Welcome to Good, Cheap Food! Here's how to start:"
+    puts "Enter '1' to start a specific search"
+    puts "Enter '2' to see a list of restaurants, neighborhoods, or cuisines"
+    @user_input = gets.strip
   end
 
   def call
-    puts "Welcome to Good, Cheap Food! Here's how to start:"
-    puts "How would you like to start?"
-    puts "Enter '1' to start a specific search"
-    puts "Enter '2' to see a list of restaurants, neighborhoods, or cuisines"
-
-    input = gets.strip
-
-    if input == '1'
+    if user_input == '1'
       puts "Enter the name of the restaurant, neighborhood, or cuisine you are searching for: "
-      search = Search.new(gets.strip)
-      search.detect_search_term
-      search.display
-      next_steps
-    else
+      user_input = gets.strip
+      run_search(user_input)
+      # next_steps
+
+    elsif user_input == '2'
       puts "Enter '1' to list restaurants by name and neighborhood"
       puts "Enter '2' to list available neighborhoods"
       puts "Enter '3' to list avialable cuisines"
-      cmd = gets.strip
-      list(cmd)
+      # user_input = gets.strip
+      # print_list(user_input)
+
       puts "Type name of item to see full profile:"
-      search = Search.new(gets.strip)
-      search.detect_search_term
-      search.display
+      # user_input = gets.strip
+      # run_search(user_input)
+      # next_steps
 
-      next_steps
+    else
+      puts "Sorry, command not recognized."
+      # next_steps
     end
+  end
 
+  def run_search(input)
+    search = Search.new(input)
+    search.detect_search_term
+    search.display
+  end
+
+  def print_list(input)
+    num = input.to_i
+    options = [Restaurant.all_names, Neighborhood.all_names, Cuisine.all_names]
+    options[num]
   end
 
   def next_steps
@@ -40,9 +52,9 @@ class CLI
     puts "Enter '1' to start a specific search"
     puts "Enter '2' to see a list of restaurants, neighborhoods, or cuisines"
     puts "Enter '3' to exit"
-    i = gets.strip
+    user_input = gets.strip
 
-    if i == '3'
+    if user_input == '3'
       puts 'Goodbye'
     else
       call
