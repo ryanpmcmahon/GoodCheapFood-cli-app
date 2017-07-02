@@ -33,7 +33,8 @@ class Scraper
     address = street_addr + ", " + locality + ", " + region + " " + zip
     attributes[:address] = address
 
-    phone = doc.css(".summary-address > p").text.split(/\r\n/)[-9].strip
+    phone = doc.css(".summary-address > p").text.split(/\r\n/)[-9]
+    phone.strip unless phone == nil
     attributes[:phone] = phone
 
     cuisine = doc.css(".category").text[9..-1]
